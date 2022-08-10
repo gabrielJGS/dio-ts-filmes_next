@@ -133,4 +133,18 @@ export default class User {
     });
     return result.data;
   }
+
+  async removeMovie(listId: number, movieId: number) {
+    if (!this.account_id) await this.getDetails();
+    const url = `https://api.themoviedb.org/3/list/${listId}/remove_item?api_key=${this.apiKey}&session_id=${this.sessionId}`;
+    const result:any = await axios
+      .post(url, {
+        media_id: movieId,
+      })
+      .catch((err) => {
+        console.error(err.response.data);
+        // throw new Error(err.response.data.status_message);
+      });
+    return result.data;
+  }
 }

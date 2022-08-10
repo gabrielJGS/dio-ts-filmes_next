@@ -132,6 +132,15 @@ const Home: NextPage = () => {
     setIsLoadingListMovie(false);
   };
 
+  const handleRemoveMovie = async (movie: any) => {
+    if (isLoadingListMovie) return;
+    setIsLoadingListMovie(true);
+    const filmeRemovido = await user.removeMovie(selList, movie.id);
+    await loadListMovies(selList);
+    setIsLoadingListMovie(false);
+    alert(`Filme ${movie.title} removido da lista`);
+  };
+
   return (
     <Box
       m={2}
@@ -319,7 +328,7 @@ const Home: NextPage = () => {
                           edge="end"
                           aria-label="removeFromList"
                           onClick={() => {
-                            handleAddMovieToList(movie);
+                            handleRemoveMovie(movie);
                           }}
                         >
                           <DeleteIcon />
