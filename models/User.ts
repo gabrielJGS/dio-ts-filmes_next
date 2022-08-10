@@ -94,7 +94,7 @@ export default class User {
   }
 
   async pegarLista(listId: number) {
-    const url = `https://api.themoviedb.org/3/list/${listId}?api_key=${this.apiKey}`;
+    const url = `https://api.themoviedb.org/3/list/${listId}?api_key=${this.apiKey}&language=pt-BR`;
     const listaInfo: any = await axios.get(url).catch((err) => {
       console.error(err.response.data);
       // throw new Error(err.response.data.status_message);
